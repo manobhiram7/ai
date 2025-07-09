@@ -1,0 +1,107 @@
+1.tic tac toe
+board = [[' ']*3 for _ in range(3)]
+print("Enter X or O ")
+for i in range(3):
+    for j in range(3):
+        val = input(f"({i},{j}) X or O: ").strip().upper()
+        board[i][j] = val
+print("\nTic Tac Toe Board:")
+for row in board:
+    print(' | '.join(row))
+    print('-' * 9)
+
+2.BFS:
+from collections import deque
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': ['F'],
+    'F': []
+}
+
+def bfs(start):
+    visited = set()
+    queue = deque([start])
+
+    while queue:
+        node = queue.popleft()
+        if node not in visited:
+            print(node, end=' ')
+            visited.add(node)
+            queue.extend(graph[node])
+
+bfs('A')
+
+3.cript arthimatic
+
+from itertools import permutations
+
+for p in permutations(range(10), 8):  # 8 unique letters in SENDMORY
+    s, e, n, d, m, o, r, y = p
+    if s == 0 or m == 0:
+        continue
+
+    send = s*1000 + e*100 + n*10 + d
+    more = m*1000 + o*100 + r*10 + e
+    money = m*10000 + o*1000 + n*100 + e*10 + y
+
+    if send + more == money:
+        print("SEND:", send, "MORE:", more, "MONEY:", money)
+        break
+
+4.decision tree:
+a = input("Weather (sunny/rainy): ").lower()
+b = input("Temperature (hot/cold): ").lower()
+
+if a == "sunny" and b == "cold":
+    print("Decision: Play")
+elif a == "sunny" and b == "hot":
+    print("Decision: Don't Play")
+elif a == "rainy":
+    print("Decision: Play")
+else:
+    print("Decision: Unknown")
+
+5. water jug
+
+a = 0  
+b = 0  
+while True:
+    if a == 2 or b == 2:
+        print(f"Reached goal: Jug A = {a}, Jug B = {b}")
+        break
+    if a == 0:
+        a = 4
+        print("Fill Jug A")
+    elif b == 3:
+        b = 0
+        print("Empty Jug B")
+    else:
+        pour = min(a, 3 - b)
+        a -= pour
+        b += pour
+    print(f"Jug A = {a}, Jug B = {b}")
+
+6.8 queen
+
+def is_safe(qs, row, col):
+    for i in range(row):
+        if qs[i] == col or abs(qs[i]-col) == abs(i-row):
+            return False
+    return True
+
+def solve(qs, row):
+    if row == 8:
+        print("Solution:", qs)
+        return
+    for col in range(8):
+        if is_safe(qs, row, col):
+            qs[row] = col
+            solve(qs, row+1)
+
+qs = [0]*8
+solve(qs, 0)
+
