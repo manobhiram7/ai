@@ -85,7 +85,7 @@ while True:
         b += pour
     print(f"Jug A = {a}, Jug B = {b}")
 
-6.8 queen
+6.  8 queen
 
 def is_safe(qs, row, col):
     for i in range(row):
@@ -104,4 +104,13 @@ def solve(qs, row):
 
 qs = [0]*8
 solve(qs, 0)
+
+7.vaccum cleaner
+loc, L, R, a = 'left', 'dirty', 'dirty', []
+if loc == 'left':
+ if L=='dirty': a+=['Suck']; L='clean'
+ a+=['Move Right']; loc='right'
+ if R=='dirty': a+=['Suck']; R='clean'
+print(a)
+print({'left': L, 'right': R})
 
